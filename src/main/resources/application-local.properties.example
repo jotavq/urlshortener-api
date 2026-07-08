@@ -1,0 +1,76 @@
+# ============================================================================
+# APPLICATION CONFIGURATION - LOCAL DEVELOPMENT
+# ============================================================================
+# Este é um arquivo EXEMPLO para configuração local em desenvolvimento.
+#
+# INSTRUÇÕES:
+# 1. Copie este arquivo para: application-local.properties
+# 2. Preencha com seus valores locais
+# 3. O arquivo application-local.properties está no .gitignore
+#    (não será commitado por segurança)
+# 4. Para usar, adicione ao comando: -Dspring.profiles.active=local
+# ============================================================================
+
+# ============================================================================
+# DATABASE CONFIGURATION
+# ============================================================================
+spring.datasource.url=jdbc:postgresql://localhost:5432/urlshortener
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# ============================================================================
+# HIBERNATE / JPA CONFIGURATION
+# ============================================================================
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.open-in-view=false
+
+# ============================================================================
+# JWT SECRET - CRITICAL SECURITY
+# ============================================================================
+# ⚠️ IMPORTANTE: Gere uma chave segura para desenvolvimento local!
+#
+# Como gerar uma chave segura:
+# - Opção 1: Use um UUID extendido
+#   uuidgen | tr -d '-' | head -c 64
+#
+# - Opção 2: Use um gerador online (apenas para DEV!)
+#   https://www.uuidgenerator.net/
+#
+# - Opção 3: Use openssl
+#   openssl rand -hex 32
+#
+# EXEMPLO DE CHAVE (64 caracteres hexadecimais - NÃO USE ESTA!):
+jwt.secret=5c4ff714000c0a8183da9fc04f4933e02e352378d1e8e7dc0108ab525f3e10be
+
+# ============================================================================
+# SPRINGDOC / SWAGGER CONFIGURATION
+# ============================================================================
+springdoc.swagger-ui.path=/docs
+springdoc.api-docs.enabled=true
+springdoc.swagger-ui.enabled=true
+
+# ============================================================================
+# LOGGING CONFIGURATION
+# ============================================================================
+logging.level.root=INFO
+logging.level.com.joaodev=DEBUG
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+# ============================================================================
+# SECURITY NOTES
+# ============================================================================
+# NUNCA coloque valores reais (senhas, tokens, chaves) em arquivos commitados!
+#
+# Para PRODUÇÃO:
+# 1. Use variáveis de ambiente do seu servidor
+# 2. Use serviços de gerenciamento de secrets (AWS Secrets Manager, etc)
+# 3. Use .env files somente localmente, NUNCA em produção
+#
+# Exemplo com variáveis de ambiente no Docker:
+#   docker run -e JWT_SECRET="sua_chave_real" -e SPRING_DATASOURCE_PASSWORD="senha_real" ...
+
