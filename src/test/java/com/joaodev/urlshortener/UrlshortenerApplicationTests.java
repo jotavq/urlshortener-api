@@ -2,9 +2,11 @@ package com.joaodev.urlshortener;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-class UrlshortenerApplicationTests {
+@ActiveProfiles("local")
+class UrlShortenerApplicationTests {
 
 	@Test
 	void contextLoads() {
