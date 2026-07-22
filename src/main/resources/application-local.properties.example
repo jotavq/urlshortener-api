@@ -19,6 +19,11 @@ spring.datasource.username=postgres
 spring.datasource.password=postgres
 spring.datasource.driver-class-name=org.postgresql.Driver
 
+#====================================================================
+# URL base pública da aplicação (usada para montar links encurtados)
+app.base-url=${APP_BASE_URL:http://localhost:8080}
+#====================================================================
+
 # ============================================================================
 # HIBERNATE / JPA CONFIGURATION
 # ============================================================================

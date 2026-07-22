@@ -5,6 +5,7 @@ import com.joaodev.urlshortener.dto.UrlResponse;
 import com.joaodev.urlshortener.entity.Url;
 import com.joaodev.urlshortener.exception.UrlNotFoundException;
 import com.joaodev.urlshortener.repository.UrlRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +16,16 @@ public class UrlService {
 
     private final UrlRepository urlRepository;
 
+    @Value("${app.base-url}")
+    private String baseUrl;
+
     public UrlService(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
     }
 
     public UrlResponse criarUrl(CriarUrlRequest request) {
         String codigo = gerarCodigo();
-        String urlCurta = "http://localhost:8080/" + codigo;
+        String urlCurta = baseUrl + "/urls/r/" + codigo;
 
         Url url = new Url(codigo, request.urlOriginal(), urlCurta);
         Url salva = urlRepository.save(url);
