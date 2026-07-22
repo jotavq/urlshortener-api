@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,8 @@ public class UrlServiceTest {
 
     @BeforeEach
     void setUp() {
-        urlFake = new Url("abc123", "https://google.com", "http://localhost:8080/abc123");
+        ReflectionTestUtils.setField(urlService, "baseUrl", "http://localhost:8080");
+        urlFake = new Url("abc123", "https://google.com", "http://localhost:8080/urls/r/abc123");
     }
 
     @Test
@@ -44,6 +46,7 @@ public class UrlServiceTest {
 
         assertNotNull(response);
         assertEquals("https://google.com", response.urlOriginal());
+        assertEquals("http://localhost:8080/urls/r/abc123", response.urlCurta());
         verify(urlRepository, times(1)).save(any(Url.class));
     }
 
