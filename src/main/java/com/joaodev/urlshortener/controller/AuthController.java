@@ -6,6 +6,7 @@ import com.joaodev.urlshortener.dto.RegisterRequest;
 import com.joaodev.urlshortener.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +23,13 @@ public class AuthController {
 
     @Operation(summary = "Criar conta", description = "Registra um novo usuário e retorna o token JWT")
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> registrar(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthResponse> registrar(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.registrar(request));
     }
 
     @Operation(summary = "Fazer login", description = "Autentica o usuário e retorna o token JWT")
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
 }

@@ -3,6 +3,7 @@ package com.joaodev.urlshortener.controller;
 import com.joaodev.urlshortener.dto.CriarUrlRequest;
 import com.joaodev.urlshortener.dto.UrlResponse;
 import com.joaodev.urlshortener.service.UrlService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class UrlController {
             @ApiResponse(responseCode = "401", description = "Não autenticado")
     })
     @PostMapping
-    public ResponseEntity<UrlResponse>  criar(@RequestBody CriarUrlRequest request) {
+    public ResponseEntity<UrlResponse>  criar(@Valid @RequestBody CriarUrlRequest request) {
         UrlResponse response = urlService.criarUrl(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
