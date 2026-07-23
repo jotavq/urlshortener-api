@@ -151,7 +151,7 @@ Algumas funcionalidades e melhorias que fazem sentido como próximos passos do p
 - [ ] **Paginação** — implementar paginação no `GET /urls` usando `Pageable` do Spring Data, para suportar grandes volumes de dados
 - [ ] **Vínculo entre URL e usuário** — relacionar cada URL ao usuário que a criou, permitindo listar apenas as URLs do usuário autenticado
 - [ ] **Exceções de negócio mais específicas** — substituir `RuntimeException` genérica (usada no `AuthService`) por exceções personalizadas, como `EmailJaCadastradoException`
-- [ ] **Validação de entrada** — usar Bean Validation (`@Valid`, `@NotBlank`, `@Email`) nos DTOs de requisição
+- [x] **Validação de entrada** — usar Bean Validation (`@Valid`, `@NotBlank`, `@Email`) nos DTOs de requisição
 - [ ] **Rate limiting** — limitar a quantidade de URLs criadas por usuário em um intervalo de tempo, evitando abuso
 - [ ] **CI/CD com GitHub Actions** — rodar os testes automaticamente a cada push, antes do deploy no Railway
 - [ ] **Migrations com Flyway** — versionar as alterações do schema do banco de dados
